@@ -3,7 +3,6 @@ session_start();
 include_once __DIR__ . '/functions.php';
 
 // $charactersForPassword = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz|\!$%&/()=?^*+-=';
-
 $charactersForPassword = '';
 $length = $_GET['passwordLenght'];
 
@@ -23,6 +22,8 @@ if ($Onlynumbers == 'true') {
 if ($Onlyspecials == 'true') {
     $charactersForPassword .= '|\!$%&/()=?^*+-=';
 }
+
+$repeatCharacters = $_GET['repeatingCharacters']
 ?>
 
 <!DOCTYPE html>
@@ -43,6 +44,17 @@ if ($Onlyspecials == 'true') {
                 <input type="number" name="passwordLenght" id="password-lenght">
             </div>
 
+            <div class="repeating-characters">
+                <span>Consenti ripetizione di uno o più caratteri?</span>
+                <br>
+                <input type="radio" id="yes-repeating-characters" name="repeatingCharacters" value="true">
+                <label for="yes-repeating-characters">Si</label>
+                <br>
+                <input type="radio" id="no-repeating-characters" name="repeatingCharacters" value="false">
+                <label for="no-repeating-characters">No</label>
+                <br>
+            </div>
+
             <div class="choose-characters-type">
                 <input type="checkbox" id="letters" name="letters" value="true">
                 <label for="letters"> Lettere</label>
@@ -60,7 +72,7 @@ if ($Onlyspecials == 'true') {
     </header>
     <main>
         <?php
-        $_SESSION['finalPassword'] = generatePassword($length, $charactersForPassword);
+        $_SESSION['finalPassword'] = generatePassword($length, $charactersForPassword, $repeatCharacters);
         //For reditect to result page
         if (isset($length)) {
             header('Location: ./result.php');
