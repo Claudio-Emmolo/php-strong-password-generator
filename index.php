@@ -23,7 +23,13 @@ if ($Onlyspecials == 'true') {
     $charactersForPassword .= '|\!$%&/()=?^*+-=';
 }
 
-$repeatCharacters = $_GET['repeatingCharacters']
+$repeatCharacters = $_GET['repeatingCharacters'];
+
+//For reditect to result page
+if (isset($length)) {
+    $_SESSION['finalPassword'] = generatePassword($length, $charactersForPassword, $repeatCharacters);
+    header('Location: ./result.php');
+}
 ?>
 
 <!DOCTYPE html>
@@ -34,50 +40,55 @@ $repeatCharacters = $_GET['repeatingCharacters']
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Password Generator</title>
+    <link rel="stylesheet" href="./styles/style.css">
+    <link rel="stylesheet" href="./styles/general.css">
+
 </head>
 
 <body>
     <header>
+        <h1>Strong Password Generator</h1>
+        <h2>Genera una password sicura</h2>
+    </header>
+
+    <main>
         <form action="./index.php" method="GET">
             <div class="characterLength">
-                <label for="password-lenght">Inserisci lunghezza password</label>
-                <input type="number" name="passwordLenght" id="password-lenght">
+                <div class="title">
+                    <label for="password-lenght">Lunghezza Password:</label>
+                </div>
+                <div class="box">
+                    <input type="number" name="passwordLenght" id="password-lenght">
+                </div>
             </div>
 
             <div class="repeating-characters">
-                <span>Consenti ripetizione di uno o più caratteri?</span>
-                <br>
-                <input type="radio" id="yes-repeating-characters" name="repeatingCharacters" value="true">
-                <label for="yes-repeating-characters">Si</label>
-                <br>
-                <input type="radio" id="no-repeating-characters" name="repeatingCharacters" value="false">
-                <label for="no-repeating-characters">No</label>
-                <br>
+                <div class="title">
+                    <span>Consenti ripetizione di uno o più caratteri:</span>
+                </div>
+                <div class="box">
+                    <div class="choose-repeat-characters">
+                        <input type="radio" id="yes-repeating-characters" name="repeatingCharacters" value="true">
+                        <label for="yes-repeating-characters">Si</label>
+                        <br>
+                        <input type="radio" id="no-repeating-characters" name="repeatingCharacters" value="false">
+                        <label for="no-repeating-characters">No</label>
+                    </div>
+                    <div class="choose-characters-type">
+                        <input type="checkbox" id="letters" name="letters" value="true">
+                        <label for="letters"> Lettere</label>
+                        <br>
+                        <input type="checkbox" id="numbers" name="numbers" value="true">
+                        <label for="numbers"> Numeri</label>
+                        <br>
+                        <input type="checkbox" id="specials" name="specials" value="true">
+                        <label for="specials">Caratteri speciali</label>
+                    </div>
+                </div>
             </div>
-
-            <div class="choose-characters-type">
-                <input type="checkbox" id="letters" name="letters" value="true">
-                <label for="letters"> Lettere</label>
-                <br>
-                <input type="checkbox" id="numbers" name="numbers" value="true">
-                <label for="numbers"> Numeri</label>
-                <br>
-                <input type="checkbox" id="specials" name="specials" value="true">
-                <label for="specials">Caratteri speciali</label>
-            </div>
-
 
             <button type="submit">Invia</button>
         </form>
-    </header>
-    <main>
-        <?php
-        $_SESSION['finalPassword'] = generatePassword($length, $charactersForPassword, $repeatCharacters);
-        //For reditect to result page
-        if (isset($length)) {
-            header('Location: ./result.php');
-        }
-        ?>
     </main>
 
 </body>

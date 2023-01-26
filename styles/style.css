@@ -1,0 +1,81 @@
+/* HEADER */
+
+header {
+    height: 10%;
+    color: white;
+    text-align: center;
+    padding-top: 3rem;
+}
+
+header h1 {
+    margin-bottom: 1rem;
+    font-size: 3rem;
+    color: rgba(255, 255, 255, 0.651);
+}
+
+header h2 {
+    text-transform: uppercase;
+    font-size: 1.5rem;
+}
+
+/* MAIN */
+
+main {
+    height: 90%;
+}
+
+form {
+    margin: auto;
+    width: 50%;
+    background-color: white;
+    border-radius: 1rem;
+    padding: 2rem;
+    font-size: 1.8rem;
+}
+
+div.title {
+    width: 60%;
+}
+
+div.box {
+    width: 40%;
+    padding: 0 0 0 2rem;
+}
+
+div.characterLength,
+div.repeating-characters {
+    display: flex;
+    margin: 3rem 0;
+}
+
+div.characterLength input {
+    font-size: 2rem;
+    width: 200px;
+}
+
+div.choose-repeat-characters input,
+div.choose-characters-type input {
+    width: 25px;
+    height: 25px;
+}
+
+div.choose-characters-type {
+    margin: 1rem 0 3rem;
+}
+
+form button {
+    font-size: 2.5rem;
+    background-color: rgb(0, 132, 255);
+    color: white;
+    padding: .5rem 1rem;
+    border-radius: .5rem;
+    border: 1px solid transparent;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: white;
+    color: rgb(0, 132, 255);
+    border: 1px solid rgb(0, 132, 255);
+    ;
+}

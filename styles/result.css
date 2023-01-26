@@ -1,0 +1,36 @@
+main {
+    height: 100%;
+    position: relative;
+}
+
+div.result-box {
+    margin: auto;
+    background-color: white;
+    text-align: center;
+    padding: 2rem 4rem;
+}
+
+div.result-box h1 {
+    margin-bottom: 2rem;
+}
+
+div.result-box span {
+    color: red;
+    font-size: 3rem;
+}
+
+div.reset a {
+    position: absolute;
+    bottom: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: white;
+    padding: 1rem;
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
+}
+
+div.reset a:hover {
+    filter: invert(1);
+}
