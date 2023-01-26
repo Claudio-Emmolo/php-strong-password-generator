@@ -1,22 +1,10 @@
 <?php
-$charactersForPassword = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz|\!$%&/()=?^*+-=';
+include_once __DIR__ . '/functions.php';
 
+
+$charactersForPassword = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz|\!$%&/()=?^*+-=';
 $length = $_GET['passwordLenght'];
 
-if (isset($length)) {
-
-    function generatePassword($length, $charactersForPassword)
-    {
-        $passwordString = '';
-
-        for ($i = 0; $i < $length; $i++) {
-            $randomNumber = rand(1, strlen($charactersForPassword));
-            $passwordString .= $charactersForPassword[$randomNumber];
-        }
-
-        return $passwordString;
-    }
-}
 ?>
 
 <!DOCTYPE html>
