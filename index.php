@@ -1,5 +1,22 @@
 <?php
-$charactersForPassword = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz|\!£$%&/()=?^*+-=';
+$charactersForPassword = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz|\!$%&/()=?^*+-=';
+
+$length = $_GET['passwordLenght'];
+
+if (isset($length)) {
+
+    function generatePassword($length, $charactersForPassword)
+    {
+        $passwordString = '';
+
+        for ($i = 0; $i < $length; $i++) {
+            $randomNumber = rand(1, strlen($charactersForPassword));
+            $passwordString .= $charactersForPassword[$randomNumber];
+        }
+
+        return $passwordString;
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -20,18 +37,12 @@ $charactersForPassword = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqr
             <button type="submit">Invia</button>
         </form>
     </header>
+    <main>
+        <?php
+        echo generatePassword($length, $charactersForPassword);
+        ?>
+    </main>
 
-    <?php
-    $length = $_GET['passwordLenght'];
-
-    function generatePassword($length, $charactersForPassword)
-    {
-        for ($i = 0; $i >= $length; $i++) {
-            $randomNumber = rand(1, 81);
-            $passwordString .= $charactersForPassword[$randomNumber];
-        }
-    }
-    ?>
 </body>
 
 </html>
