@@ -2,9 +2,27 @@
 session_start();
 include_once __DIR__ . '/functions.php';
 
-$charactersForPassword = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz|\!$%&/()=?^*+-=';
+// $charactersForPassword = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz|\!$%&/()=?^*+-=';
+
+$charactersForPassword = '';
 $length = $_GET['passwordLenght'];
 
+$Onlyletters = $_GET['letters'];
+$Onlynumbers = $_GET['numbers'];
+$Onlyspecials = $_GET['specials'];
+
+//Check user only select
+if ($Onlyletters == 'true') {
+    $charactersForPassword .= 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+}
+
+if ($Onlynumbers == 'true') {
+    $charactersForPassword .= '0123456789';
+}
+
+if ($Onlyspecials == 'true') {
+    $charactersForPassword .= '|\!$%&/()=?^*+-=';
+}
 ?>
 
 <!DOCTYPE html>
@@ -20,15 +38,29 @@ $length = $_GET['passwordLenght'];
 <body>
     <header>
         <form action="./index.php" method="GET">
-            <label for="password-lenght">Inserisci lunghezza password</label>
-            <input type="number" name="passwordLenght" id="password-lenght">
+            <div class="characterLength">
+                <label for="password-lenght">Inserisci lunghezza password</label>
+                <input type="number" name="passwordLenght" id="password-lenght">
+            </div>
+
+            <div class="choose-characters-type">
+                <input type="checkbox" id="letters" name="letters" value="true">
+                <label for="letters"> Lettere</label>
+                <br>
+                <input type="checkbox" id="numbers" name="numbers" value="true">
+                <label for="numbers"> Numeri</label>
+                <br>
+                <input type="checkbox" id="specials" name="specials" value="true">
+                <label for="specials">Caratteri speciali</label>
+            </div>
+
+
             <button type="submit">Invia</button>
         </form>
     </header>
     <main>
         <?php
         $_SESSION['finalPassword'] = generatePassword($length, $charactersForPassword);
-
         //For reditect to result page
         if (isset($length)) {
             header('Location: ./result.php');
