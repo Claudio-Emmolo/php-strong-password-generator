@@ -1,6 +1,6 @@
 <?php
+session_start();
 include_once __DIR__ . '/functions.php';
-
 
 $charactersForPassword = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz|\!$%&/()=?^*+-=';
 $length = $_GET['passwordLenght'];
@@ -27,7 +27,12 @@ $length = $_GET['passwordLenght'];
     </header>
     <main>
         <?php
-        echo generatePassword($length, $charactersForPassword);
+        $_SESSION['finalPassword'] = generatePassword($length, $charactersForPassword);
+
+        //For reditect to result page
+        if (isset($length)) {
+            header('Location: ./result.php');
+        }
         ?>
     </main>
 
