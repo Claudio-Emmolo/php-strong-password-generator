@@ -20,6 +20,18 @@ $charactersForPassword = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqr
             <button type="submit">Invia</button>
         </form>
     </header>
+
+    <?php
+    $length = $_GET['passwordLenght'];
+
+    function generatePassword($length, $charactersForPassword)
+    {
+        for ($i = 0; $i >= $length; $i++) {
+            $randomNumber = rand(1, 81);
+            $passwordString .= $charactersForPassword[$randomNumber];
+        }
+    }
+    ?>
 </body>
 
 </html>
